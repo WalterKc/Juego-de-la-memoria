@@ -1,4 +1,4 @@
-let ContadorTurnos = 0;
+let contadorTurnos = 0;
 const tablero = document.querySelector("#tablero");
 const cuadros = tablero.querySelectorAll(".cuadro");
 function colorearTablero() {
@@ -12,20 +12,20 @@ function colorearTablero() {
   }
 }
 
-let cuadroCarry = 0;
-let carryActivo = false;
+let cuadroAnterior = 0;
+let acarreoActivo = false;
 function selecionarCelda(event) {
   if (event.target.classList.contains("cuadro")) {
-    if (!carryActivo) {
+    if (!acarreoActivo) {
       const cuadroSelecionado = event.target;
-      if (Number(cuadroSelecionado.style.opacity) === 0 && !carryActivo) {
+      if (Number(cuadroSelecionado.style.opacity) === 0 && !acarreoActivo) {
         cuadroSelecionado.style.opacity = 1;
-        cuadroCarry = cuadroSelecionado;
-        carryActivo = true;
+        cuadroAnterior = cuadroSelecionado;
+        acarreoActivo = true;
         ContadorTurnos += 1;
       } else if (Number(cuadroSelecionado.style.opacity) === 1) {
         cuadroSelecionado.style.opacity = 0;
-        carryActivo = false;
+        acarreoActivo = false;
       }
     } else {
       comprobarIgualdadDeCuadros(event.target);
@@ -34,22 +34,22 @@ function selecionarCelda(event) {
 }
 
 function comprobarIgualdadDeCuadros(cuadroSelecionado) {
-  if (carryActivo) {
+  if (acarreoActivo) {
     cuadroSelecionado.style.opacity = 1;
     if (
-      cuadroCarry.classList[2] === cuadroSelecionado.classList[2] &&
-      cuadroSelecionado !== cuadroCarry
+      cuadroAnterior.classList[2] === cuadroSelecionado.classList[2] &&
+      cuadroSelecionado !== cuadroAnterior
     ) {
-      cuadroCarry.parentElement.classList.add("completo");
+      cuadroAnterior.parentElement.classList.add("completo");
       cuadroSelecionado.parentElement.classList.add("completo");
-      cuadroCarry.remove();
+      cuadroAnterior.remove();
       cuadroSelecionado.remove();
-      carryActivo = false;
-      evaluoFinDeJuego();
+      acarreoActivo = false;
+      evaluarFinDeJuego();
     } else {
-      carryActivo = false;
+      acarreoActivo = false;
       setTimeout(function () {
-        cuadroCarry.style.opacity = 0;
+        cuadroAnterior.style.opacity = 0;
       }, 200);
       setTimeout(function () {
         cuadroSelecionado.style.opacity = 0;
@@ -58,7 +58,7 @@ function comprobarIgualdadDeCuadros(cuadroSelecionado) {
   }
 }
 
-function evaluoFinDeJuego() {
+function evaluarFinDeJuego() {
   const cuadrosActuales = tablero.querySelectorAll(".cuadro");
   if (cuadrosActuales.length === 0) {
     const mensajeFinJuego = document.querySelector("#fin-juego");
@@ -69,4 +69,5 @@ function evaluoFinDeJuego() {
   }
 }
 
+colorearTablero();
 tablero.onclick = selecionarCelda;
