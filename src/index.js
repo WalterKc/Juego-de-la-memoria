@@ -18,7 +18,6 @@ function selecionarCelda(event) {
   if (event.target.classList.contains("cuadro")) {
     if (!carryActivo) {
       const cuadroSelecionado = event.target;
-
       if (Number(cuadroSelecionado.style.opacity) === 0 && !carryActivo) {
         cuadroSelecionado.style.opacity = 1;
         cuadroCarry = cuadroSelecionado;
