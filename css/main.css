@@ -1,0 +1,57 @@
+body,
+html {
+  height: 100%;
+}
+
+.completo {
+  background: darkgrey;
+}
+
+.columna-juego {
+  border: 1px solid black;
+}
+
+.fila-juego {
+  height: 25vh;
+}
+
+.cuadro {
+  opacity: 0;
+  transition: opacity ease 0.2s;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.rojo {
+  background-color: red;
+  opacity: 0;
+}
+
+.verde {
+  background-color: green;
+  opacity: 0;
+}
+
+.amarillo {
+  background-color: yellow;
+  opacity: 0;
+}
+
+.negro {
+  background-color: black;
+  opacity: 0;
+}
+
+.blanco {
+  background-color: white;
+  opacity: 0;
+}
+
+.azul {
+  background-color: blue;
+  opacity: 0;
+}
+
+#fin-juego {
+  display: none;
+}
