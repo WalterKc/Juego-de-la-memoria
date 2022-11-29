@@ -20,19 +20,15 @@ function selecionarCelda(event) {
       const cuadroSelecionado = event.target;
 
       if (Number(cuadroSelecionado.style.opacity) === 0 && !carryActivo) {
-        console.log("trasparente");
-        console.log("falso");
         cuadroSelecionado.style.opacity = 1;
         cuadroCarry = cuadroSelecionado;
         carryActivo = true;
         ContadorTurnos += 1;
       } else if (Number(cuadroSelecionado.style.opacity) === 1) {
-        console.log("opaco");
         cuadroSelecionado.style.opacity = 0;
         carryActivo = false;
       }
     } else {
-      console.log("segunda opcion");
       comprobarIgualdadDeCuadros(event.target);
     }
   }
@@ -45,7 +41,6 @@ function comprobarIgualdadDeCuadros(cuadroSelecionado) {
       cuadroCarry.classList[2] === cuadroSelecionado.classList[2] &&
       cuadroSelecionado !== cuadroCarry
     ) {
-      console.log("iguales");
       cuadroCarry.parentElement.classList.add("completo");
       cuadroSelecionado.parentElement.classList.add("completo");
       cuadroCarry.remove();
@@ -53,7 +48,6 @@ function comprobarIgualdadDeCuadros(cuadroSelecionado) {
       carryActivo = false;
       evaluoFinDeJuego();
     } else {
-      console.log("diferentes");
       carryActivo = false;
       setTimeout(function () {
         cuadroCarry.style.opacity = 0;
